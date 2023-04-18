@@ -12,15 +12,24 @@
     <button id="start-button">Start/Pause</button>
     
     <div class="grid">
-      
+
     </div>
 
     <script>
       const gridElement = document.querySelector('.grid');
+
+      // Add 200 divs with no class
       for (let i = 0; i < 200; i++) {
         const divElement = document.createElement('div');
         gridElement.appendChild(divElement);
       }
+
+      // Add 10 divs with the "taken" class
+        for (let i = 0; i < 10; i++) {
+          const takenElement = document.createElement('div');
+          takenElement.classList.add('taken');
+          gridElement.appendChild(takenElement);
+        }
     </script>
 
   </body>

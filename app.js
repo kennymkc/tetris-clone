@@ -52,25 +52,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //draw the Tetromino
   const draw = () => {
-    current.forEach(i => {
-      squares[currentPosition + i].classList.add('tetromino')
-    })
+    if (current) {
+      current.forEach(i => {
+        squares[currentPosition + i].classList.add('tetromino')
+      })
+    }
   }
 
   const undraw = () => {
-    current.forEach(i => {
-      squares[currentPosition + i].classList.remove('tetromino')
-    })
+    if (current) {
+      current.forEach(i => {
+        squares[currentPosition + i].classList.remove('tetromino')
+      })
+    }
   }
   
   const moveDown = () => {
     undraw();
     currentPosition += width;
     draw();
+    freeze();
   }
 
   //make the Tetromino move down every second
   timeId = setInterval(moveDown, 1000)
 
 
+  const freeze = () => {
+    if (current.some(i => squares[currentPosition + i + width].classList.contains('taken'))) {
+      current.forEach(i => squares[currentPosition + i].classList.add('taken'))
+      //start a new tetromino falling
+      random = Math.floor(Math.random() * theTetrominoes.length)
+      current = theTetrominoes[random][currentRotation]
+      currentPosition = 4
+      draw()
+    }
+  }
 })
