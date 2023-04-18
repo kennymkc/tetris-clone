@@ -56,7 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
       squares[currentPosition + i].classList.add('tetromino')
     })
   }
+
+  const undraw = () => {
+    current.forEach(i => {
+      squares[currentPosition + i].classList.remove('tetromino')
+    })
+  }
   
-  draw();
 
 })
