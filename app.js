@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
   //make the Tetromino move down every second
   timeId = setInterval(moveDown, 1000)
 
-
   const freeze = () => {
     if (current.some(i => squares[currentPosition + i + width].classList.contains('taken'))) {
       current.forEach(i => squares[currentPosition + i].classList.add('taken'))
@@ -88,4 +87,24 @@ document.addEventListener('DOMContentLoaded', () => {
       draw()
     }
   }
+
+  //move the tetromino left unless it is at the edge or blockage
+  const moveLeft = () => {
+    undraw()
+    const isAtLeftEdge = current.some(i => (currentPosition + i) % width === 0)
+
+    if (!isAtLeftEdge) currentPosition -= 1
+    
+    if (current.some(i => squares[currentPosition + i].classList.contains('taken'))) {
+      currentPosition += 1
+    }
+  }
+
+  const control = (e) => {
+    if (e.keyCode === 37) {
+      moveLeft()
+    }
+  }
+  document.addEventListener('keyup', control)
+
 })
