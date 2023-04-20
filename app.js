@@ -98,11 +98,33 @@ document.addEventListener('DOMContentLoaded', () => {
     if (current.some(i => squares[currentPosition + i].classList.contains('taken'))) {
       currentPosition += 1
     }
+
+    draw()
+  }
+
+  //move the tetromino right unless it is at the edge or blockage
+  const moveRight = () => {
+    undraw()
+    const isAtRightEdge = current.some(i => (currentPosition + i) % width === width - 1)
+
+    if (!isAtRightEdge) currentPosition += 1
+    
+    if (current.some(i => squares[currentPosition + i].classList.contains('taken'))) {
+      currentPosition -= 1
+    }
+
+    draw()
   }
 
   const control = (e) => {
     if (e.keyCode === 37) {
       moveLeft()
+    } else if (e.keyCode === 38) {
+      //rotate()
+    } else if (e.keyCode === 39) {
+      moveRight()
+    } else if (e.keyCode === 40) {
+      moveDown()
     }
   }
   document.addEventListener('keyup', control)
