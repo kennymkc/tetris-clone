@@ -11,9 +11,9 @@
     <h3>Score:<span id="score">0</span></h3>
     <button id="start-button">Start/Pause</button>
     
-    <div class="grid">
+    <div class="grid"></div>
 
-    </div>
+    <div class="mini-grid"></div>
 
     <script>
       const gridElement = document.querySelector('.grid');
@@ -30,6 +30,15 @@
           takenElement.classList.add('taken');
           gridElement.appendChild(takenElement);
         }
+
+        // Add 16 divs with the 'mini-grid' class
+        const miniGridElement = document.querySelector('.mini-grid');
+
+        for (let i = 0; i < 16; i++) {
+            const miniElement = document.createElement('div');
+            miniElement.classList.add('mini-grid');
+            miniGridElement.appendChild(miniElement);
+          }
     </script>
 
   </body>
