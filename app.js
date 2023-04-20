@@ -116,11 +116,25 @@ document.addEventListener('DOMContentLoaded', () => {
     draw()
   }
 
+  //rotate the teromino
+  const rotate = () => {
+    undraw()
+    currentRotation++
+
+    //resets the current rotation if it gets to 4th rotation
+    if (currentRotation === current.length) {
+      currentRotation = 0
+    }
+
+    current = theTetrominoes[random][currentRotation]
+    draw()
+  }
+
   const control = (e) => {
     if (e.keyCode === 37) {
       moveLeft()
     } else if (e.keyCode === 38) {
-      //rotate()
+      rotate()
     } else if (e.keyCode === 39) {
       moveRight()
     } else if (e.keyCode === 40) {
